@@ -7,7 +7,7 @@ If this mod has been added to it, then installation should be through GodNooNoo'
 However, manual installation should be possible through one of the following paths:
 
 ### Browser
-Create a new Tampermonkey script with the contents of this repository's `VoidMapClarifier.user.js` file.
+Create a new Tampermonkey script with the contents of this repository's `qwUI.user.js` file.
 
 ### Steam
 Download this repository's `mods.js` file, and place it in the /mods/ folder inside the Trimps folder.
