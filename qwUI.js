@@ -36,19 +36,19 @@ if (game.global.canGuString) {
 // Settings Buttons need to be modified on creation 
 originalsearchSettings = searchSettings
 searchSettings = function () {
-const result = originalsearchSettings(...arguments);
+    const result = originalsearchSettings(...arguments);
 
-// Supervision
-try {
-    qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;")
-}
-catch { }
-// MaZ
-try {
-    if (game.global.canMapAtZone) {
-        qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;")
+    // Supervision
+    try {
+        qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;")
     }
-}
-catch { }
+    catch { }
+    // MaZ
+    try {
+        if (game.global.canMapAtZone) {
+            qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;")
+        }
+    }
+    catch { }
     return result
 }
