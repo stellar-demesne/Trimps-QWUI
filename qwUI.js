@@ -51,11 +51,16 @@ const qUI = {
 
 
 // Screenreader fixes
-qUI.addAriaLabel(document.querySelector("#autoJobsBtn"), "Configure Auto Jobs");
+qUI.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Configure Auto Jobs");
 qUI.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
 qUI.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
-qUI.addAriaLabel(document.querySelector("#generatorStateConfigBtn"), "Configure DG Supervision");
+//qUI.addAriaLabel(document.querySelector("#generatorStateConfigBtn"), "Configure DG Supervision");
 qUI.setAllAriaLabels() // not sure if this is a good idea
+
+
+// cursed span vs div
+document.querySelector("#generatorStateConfigBtn").remove();
+document.querySelector("#dgChangeBtnContainer").innerHTML += `<div role="button" aria-label="Configure Generator" style="display: inline-block;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`;
 
 
 // AutoGold
