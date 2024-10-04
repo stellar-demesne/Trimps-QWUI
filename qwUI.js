@@ -30,6 +30,7 @@ const qUI = {
 		targetElem.appendChild(btn);
 		targetElem.classList.add("toggleConfigBtn");
 		if (styleOverride) targetElem.style = styleOverride;
+		return [targetElem, btn]; // TODO styles should probably be set based on what type of button the target is, alas. So, return so it's possible to modify after creation
 	},
 
 	addAriaLabel: function (targetElem, label) {
