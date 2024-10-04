@@ -5,7 +5,7 @@ const qUI = {
 
 	generatorConfig: function () {
 		if (game.permanentGeneratorUpgrades.Supervision.owned) {
-			tooltip("Configure Generator State", null, "update")
+			tooltip("Configure Generator State", null, "update");
 		}
 	},
 
@@ -15,17 +15,17 @@ const qUI = {
 
 	makeCfgBtn: function (targetElem, configID, styleOverride) {
 		if (!targetElem) return;
-		const btn = document.createElement("div")
-		const icon = document.createElement("span")
-		icon.classList.add("glyphicon", "glyphicon-cog")
-		btn.appendChild(icon)
-		btn.setAttribute("id", configID)
-		btn.onclick = qUI[configID]
-		btn.setAttribute("aria-label", "Configure")
+		const btn = document.createElement("div");
+		const icon = document.createElement("span");
+		icon.classList.add("glyphicon", "glyphicon-cog");
+		btn.appendChild(icon);
+		btn.setAttribute("id", configID);
+		btn.onclick = qUI[configID];
+		btn.setAttribute("aria-label", "Configure");
 
-		targetElem.appendChild(btn)
-		targetElem.classList.add("toggleConfigBtn")
-		if (styleOverride) targetElem.style = styleOverride
+		targetElem.appendChild(btn);
+		targetElem.classList.add("toggleConfigBtn");
+		if (styleOverride) targetElem.style = styleOverride;
 	},
 
 	addAriaLabel: function (targetElem, label) {
@@ -55,7 +55,7 @@ qUI.setAllAriaLabels() // not sure if this is a good idea
 
 // AutoGold
 if (game.global.canGuString) {
-	qUI.makeCfgBtn(document.getElementById("autoGoldenBtn"), "goldConfig")
+	qUI.makeCfgBtn(document.getElementById("autoGoldenBtn"), "goldConfig");
 }
 
 // Settings Buttons need to be modified on creation 
@@ -65,15 +65,15 @@ searchSettings = function () {
 
 	// Supervision
 	try {
-		qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;")
+		qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;");
 	}
 	catch { }
 	// MaZ
 	try {
 		if (game.global.canMapAtZone) {
-			qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;")
+			qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;");
 		}
 	}
 	catch { }
-	return result
+	return result;
 }
