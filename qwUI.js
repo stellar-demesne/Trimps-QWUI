@@ -55,7 +55,7 @@ qUI.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Con
 qUI.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
 qUI.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
 //qUI.addAriaLabel(document.querySelector("#generatorStateConfigBtn"), "Configure DG Supervision");
-qUI.setAllAriaLabels() // not sure if this is a good idea
+//qUI.setAllAriaLabels() // not sure if this is a good idea
 
 
 // cursed span vs div
