@@ -13,6 +13,10 @@ const qUI = {
 		tooltip('Set Map At Zone', null, 'update');
 	},
 
+	GAConfig: function () {
+		tooltip('Geneticistassist Settings', null, 'update');
+	},
+
 	makeCfgBtn: function (targetElem, configID, styleOverride) {
 		if (!targetElem) return;
 		const btn = document.createElement("div");
