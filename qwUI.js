@@ -40,28 +40,34 @@ const qUI = {
 		}
 	},
 
-	setAllAriaLabels: function () {
-		const targetElems = document.querySelectorAll(`[title]:not([title=""])`);
-		for (const targetElem of targetElems) {
-			this.addAriaLabel(targetElem);
-		}
+	createStyles: function () {
+		let styleElem = document.createElement("style");
+		styleElem.textContent = `
+		.settingsBtnCogwheel {
+    		font-size: 1.17vw;
+    		border-right: 1px solid black !important;
+    		border-top: 1px solid black !important;
+    		border-bottom: 1px solid black !important;
+    		cursor: pointer;
+		},
+		`;
+		document.head.appendChild(styleElem);
 	},
 
 }
 
+qUI.createStyles()
 
 // Screenreader fixes
 qUI.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Configure Auto Jobs");
 qUI.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
 qUI.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
-//qUI.addAriaLabel(document.querySelector("#generatorStateConfigBtn"), "Configure DG Supervision");
-//qUI.setAllAriaLabels() // not sure if this is a good idea
-
-
-// cursed span vs div
+// Screenreader DG fix, cursed span vs div
 document.querySelector("#generatorStateConfigBtn").remove();
 document.querySelector("#dgChangeBtnContainer").innerHTML += `<div role="button" aria-label="Configure Generator" style="display: inline-block;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`;
 
+
+// Configuration buttons for Mobile / SR
 
 // AutoGold
 if (game.global.canGuString) {
@@ -72,16 +78,18 @@ if (game.global.canGuString) {
 originalsearchSettings = searchSettings;
 searchSettings = function () {
 	const result = originalsearchSettings(...arguments);
-
+	let target, btn;
 	// Supervision
 	try {
-		qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;");
+		[target, btn] = qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;");
+		btn.classList.add("settingsBtnCogwheel")
 	}
 	catch { }
 	// MaZ
 	try {
 		if (game.global.canMapAtZone) {
-			qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;");
+			[target, btn] = qUI.makeCfgBtn(document.getElementById("togglemapAtZone").parentElement, "mazConfig", "height: auto;");
+			btn.classList.add("settingsBtnCogwheel")
 		}
 	}
 	catch { }
