@@ -63,8 +63,12 @@ qUI.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Con
 qUI.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
 qUI.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
 // Screenreader DG fix, cursed span vs div
-document.querySelector("#generatorStateConfigBtn").remove();
-document.querySelector("#dgChangeBtnContainer").innerHTML += `<div role="button" aria-label="Configure Generator" style="display: inline-block;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`;
+try {
+	document.querySelector("#generatorStateConfigBtn").remove();
+	document.querySelector("#dgChangeBtnContainer").innerHTML += `<div role="button" aria-label="Configure Generator" style="display: inline-block;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`;
+}
+catch { }
+
 
 
 // Configuration buttons for Mobile / SR
