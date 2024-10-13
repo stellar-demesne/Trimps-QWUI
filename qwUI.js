@@ -54,24 +54,24 @@ const qUI = {
 		document.head.appendChild(styleElem);
 	},
 
+	screenReaderBtns: function () {
+		// Screenreader fixes
+		this.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Configure Auto Jobs");
+		this.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
+		this.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
+
+		// Screenreader DG fix, cursed span vs div
+		try {
+			document.querySelector("#generatorStateConfigBtn").remove();
+			document.querySelector("#dgChangeBtnContainer").insertAdjacentHTML("beforeend", `<div role="button" aria-label="Configure Generator" style="display: none;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`);
+			updateGeneratorInfo() // display btn if supervsion unlocked
+		}
+		catch { }
+	},
 }
 
 qUI.createStyles()
-
-// Screenreader fixes
-qUI.addAriaLabel(document.querySelector("#autoJobsBtn > div:nth-child(2)"), "Configure Auto Jobs");
-qUI.addAriaLabel(document.querySelector("#autoStructureBtn > div:nth-child(2)"), "Configure Auto Structure");
-qUI.addAriaLabel(document.querySelector("#autoEquipBtn > div:nth-child(2)"), "Configure Auto Equip");
-// Screenreader DG fix, cursed span vs div
-try {
-	document.querySelector("#generatorStateConfigBtn").remove();
-	document.querySelector("#dgChangeBtnContainer").innerHTML += `<div role="button" aria-label="Configure Generator" style="display: inline-block;" onclick="tooltip(&quot;Configure Generator State&quot;, null, &quot;update&quot;)" id="generatorStateConfigBtn" class="pointer noselect hoverColor dgChangeBtn colorDefault"><span class="glyphicon glyphicon-cog"></span></div>`;
-}
-catch { }
-
-
-
-// Configuration buttons for Mobile / SR
+qUI.screenReaderBtns()
 
 // AutoGold
 if (game.global.canGuString) {
@@ -85,8 +85,10 @@ searchSettings = function () {
 	let target, btn;
 	// Supervision
 	try {
-		[target, btn] = qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;");
-		btn.classList.add("settingsBtnCogwheel")
+		if (game.permanentGeneratorUpgrades.Supervision.owned) {
+			[target, btn] = qUI.makeCfgBtn(document.getElementById("togglegeneratorStart").parentElement, "generatorConfig", "height: auto;");
+			btn.classList.add("settingsBtnCogwheel")
+		}
 	}
 	catch { }
 	// MaZ
