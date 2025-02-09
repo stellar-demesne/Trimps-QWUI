@@ -70,7 +70,7 @@ const qUI = {
 	},
 }
 
-//qUI.createStyles()
+qUI.createStyles()
 //qUI.screenReaderBtns()
 
 // AutoGold
@@ -79,7 +79,7 @@ if (game.global.canGuString) {
 }
 
 // Settings Buttons need to be modified on creation 
-/*
+
 originalsearchSettings = searchSettings;
 searchSettings = function () {
 	const result = originalsearchSettings(...arguments);
@@ -102,4 +102,4 @@ searchSettings = function () {
 	catch { }
 	return result;
 }
-*/
+
