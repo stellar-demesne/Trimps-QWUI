@@ -70,15 +70,16 @@ const qUI = {
 	},
 }
 
-qUI.createStyles()
-qUI.screenReaderBtns()
+//qUI.createStyles()
+//qUI.screenReaderBtns()
 
 // AutoGold
 if (game.global.canGuString) {
-	qUI.makeCfgBtn(document.getElementById("autoGoldenBtn"), "goldConfig");
+	//qUI.makeCfgBtn(document.getElementById("autoGoldenBtn"), "goldConfig");
 }
 
 // Settings Buttons need to be modified on creation 
+/*
 originalsearchSettings = searchSettings;
 searchSettings = function () {
 	const result = originalsearchSettings(...arguments);
@@ -101,3 +102,4 @@ searchSettings = function () {
 	catch { }
 	return result;
 }
+*/
