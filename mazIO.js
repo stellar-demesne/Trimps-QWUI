@@ -98,7 +98,10 @@ const mazIO = {
 				if (line.biome == 'Plentiful' && !game.global.decayDone) { line.biome = 'Random'; errors.add('Gardens') }
 				if (line.biome == 'Farmlands' && !game.global.farmlandsUnlocked) { line.biome = 'Random'; errors.add('Farmlands') }
 				let unlocksAt = game.global.universe == 1 ? 'unlocksAt' : 'unlocksAt2';
-				if (line.specMod != '0' && mapSpecialModifierConfig[line.specMod][unlocksAt] > mazIO.hze + 1) { specErrors.add(line.specMod); line.specMod = '0';}
+				if ((line.specMod != '0' && mapSpecialModifierConfig[line.specMod][unlocksAt] > mazIO.hze + 1) ||
+					(['src', 'lrc'].includes(line.specMod) && !game.global.ArchaeologyDone)) { 
+						specErrors.add(line.specMod); line.specMod = '0';
+				}
 			}
 			this.error = (errors.size > 0 ? `Disabling Preset Options: ${[...errors].join(". ")}.<br>` : "" )  + (specErrors.size > 0 ? `Disabling Special Mods: ${[...specErrors].join(", ")}<br>` : "");
 			return data
